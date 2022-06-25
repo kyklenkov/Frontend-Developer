@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Case Converter</title>
+    <link rel="stylesheet" href="Style_CaseConverter.css">
+</head>
+<body>
+    <div class="flex-container">
+        <div class="title">Case Converter</div>
+        <textarea id="textarea" rows="25" cols="120" name="Case converter"></textarea>
+    </div>
+    <button id="upper-case" onclick="upper()">Upper Case</button>
+    <button id="lower-case" onclick="lower()">Lower Case</button>
+    <button id="proper-case" onclick="proper()">Proper Case</button>
+    <button id="sentence-case" onclick="sentence()">Sentence Case</button>
+    <button id="save-text-file" onclick="download()">Save Text File</button>
+<script src="CaseConverter.js"></script>
+</body>
+</html>
+
+JS CODE:
+function upper() {
+    let inputText = document.getElementById("textarea").value;
+    document.getElementById("textarea").value = inputText.toUpperCase();
+};
+
+function lower() {
+    let inputText = document.getElementById("textarea").value;
+    document.getElementById("textarea").value = inputText.toLowerCase();
+};
+
+function proper() {
+    let str = document.getElementById("textarea").value;
+    let array = str.split(" ");
+    let nArray = [];
+    for (let i=0; i < array.length; i++) {
+        let lower = array[i].toLowerCase();
+        let firstletter = lower.slice(0, 1);
+        let nEl = lower.replace(firstletter, firstletter.toUpperCase());
+        let result = nEl;
+        nArray.push(result);
+    };
+    let nStr = nArray.join(" ");
+    document.getElementById("textarea").value = nStr;
+};
+
+function sentence() {
+    let str = document.getElementById("textarea").value;
+    // let array = str.split(/[\.](?=\w)/gi); не получается сохранять сам разделитель :(
+    // console.log(array);
+    let newStr = str.toLowerCase().replace(/(^\s*\w|(?<=[\.\!\?])(\s*\w))/g, function (c) {return c.toUpperCase()});
+    document.getElementById("textarea").value = newStr;
+};
+
+document.querySelector("button", save-text).onclick = check;
+
+function check () {
+    console.log("good");
+};
+
+function download (filename, text) {
+    var filename = "text.txt";
+    var text = document.getElementById("textarea").value;
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+};
+
+CSS CODE:
+.flex-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 50px;
+}
+
+#upper-case {
+    border: aliceblue;
+    border-radius: 5px;
+    flex-basis: 4em;
+    height: 45px;
+    width: 150px;
+    line-height: 0em;
+    margin: 20px 10px 0 0;
+    background-color: orange;
+    font-size: large;
+}
+
+#lower-case {
+    border: aliceblue;
+    border-radius: 5px;
+    flex-basis: 4em;
+    height: 45px;
+    width: 150px;
+    line-height: 0em;
+    margin: 20px 10px 0 0;
+    background-color: orange;
+    font-size: large;
+}
+
+#proper-case {
+    border: aliceblue;
+    border-radius: 5px;
+    flex-basis: 4em;
+    height: 45px;
+    width: 150px;
+    line-height: 0em;
+    margin: 20px 10px 0 0;
+    background-color: orange;
+    font-size: large;
+}
+
+#sentence-case {
+    border: aliceblue;
+    border-radius: 5px;
+    flex-basis: 4em;
+    height: 45px;
+    width: 150px;
+    line-height: 0em;
+    margin: 20px 10px 0 0;
+    background-color: orange;
+    font-size: large;
+}
+
+#save-text-file {
+    border: aliceblue;
+    border-radius: 5px;
+    flex-basis: 4em;
+    height: 45px;
+    width: 150px;
+    line-height: 0em;
+    margin: 20px 10px 0 0;
+    background-color: orange;
+    font-size: large;
+}
